@@ -27,28 +27,39 @@ input:
 output:
 4'''
 
-
 import sys
-#defining a function to calculate the sweetness of two candies 
+# function to calculate the sweetness of two candies 
 def sweetness(candy1,candy2):
     return min(candy1,candy2)+2*(max(candy1,candy2))
     
-candyarray=[2,5,3,7,6,1]
-desired_sweetness=11
-steps=0
-# sorting the array for first while loop
-candyarray.sort()
-# after sorting if the least sweetness is less than the desired_sweetness then add the least two sweetness candy
-while candyarray[0] < desired_sweetness:
-    # increment the step each time two candies are added
-    steps += 1
-    # since the candy array is sorted , the least two candies should be at first and seconf position of the array
-    candy1,candy2  = candyarray[0],candyarray[1]
-    # removing the least two candies since it has to be replaced by their added sweetness
-    candyarray.pop(1)
-    candyarray.pop(0)
-    candyarray.append(sweetness(candy1,candy2))
-    # sorting the candyarray after adding the least two sweetness candy so that the loop can check the least value will be checked by the loop when it runs again
+# function for ca;culating steps
+def stepscalculation(candyarray,desired_sweetness):
+    steps=0
+    # sorting the array for first while loop
     candyarray.sort()
-        
-print("The total number of steps until all the candies are above the desired sweetness are : " , steps)
+    # after sorting if the least sweetness is less than the desired_sweetness then add the least two sweetness candy
+    while candyarray[0] < desired_sweetness:
+        # increment the step each time two candies are added
+        steps += 1
+        # since the candy array is sorted , the least two candies should be at first and seconf position of the array
+        candy1,candy2  = candyarray[0],candyarray[1]
+        # removing the least two candies since it has to be replaced by their added sweetness
+        candyarray.pop(1)
+        candyarray.pop(0)
+        candyarray.append(sweetness(candy1,candy2))
+        # sorting the candyarray after adding the least two sweetness candy so that the loop can check the least value will be checked by the loop when it runs again
+        candyarray.sort()
+    return steps
+    
+    
+candyarray=[1,2,3,4,5]
+desired_sweetness=7    
+print("The total number of steps until all the candies are above the desired sweetness are : " , stepscalculation(candyarray,desired_sweetness))
+
+
+    
+candyarray=[2,5,3,7,6,1]
+desired_sweetness=11    
+print("The total number of steps until all the candies are above the desired sweetness are : " , stepscalculation(candyarray,desired_sweetness))
+
+

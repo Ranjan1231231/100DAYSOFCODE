@@ -32,22 +32,38 @@ NO
 import sys
 def balancedbrackets ( string ) :
     temparr = [ ]
-    for i in string :
-        if i == "(" or i == "{" or i == "[" :
-            temparr.append ( i )
-        elif i == ")":
-            if temparr [ -1 ] == "(" :
-                temparr.pop ( )
-        elif i == "}" :
-            if temparr [ -1 ] == "{" :
-                temparr.pop ( )
-        elif i == "]" :
-            if temparr [ -1 ] == "[" :
-                temparr.pop ( )
-    if len(temparr)==0:
-        return "YES"
-    else:
-        return "NO"
+    temparr = [ ]
+        if string[0] != "(" :
+            if string[0] != "{":
+                if string[0] != "[":
+                    return False
+        for i in string :
+            
+            if i == "(" or i == "{" or i == "[" :
+                temparr.append ( i )
+            #     if the closing brackets matches by their opening bracket in the last      element of the array then pop the element
+            elif len(temparr)==0:
+                return False
+            elif i == ")" :
+                if temparr [ -1 ] == "(" :
+                    temparr.pop ( )
+                else:
+                    return False
+            elif i == "}" :
+                if temparr [ -1 ] == "{" :
+                    temparr.pop ( )
+                else:
+                    return False
+            elif i == "]" :
+                if temparr [ -1 ] == "[" :
+                    temparr.pop ( )
+                else:
+                    return False
+        # if length of the array is 0 then print yes or else no
+        if len ( temparr ) == 0 :
+            return True
+        else :
+            return False
 
 
 print ( balancedbrackets ( "{([])}" ) )

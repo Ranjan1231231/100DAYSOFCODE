@@ -37,3 +37,21 @@ class Solution:
                 dict1[j]+=1
         # returning if dictonary 1= dictonary
         return dict1==dict
+
+
+
+"""
+another way 
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s)!=len(t):
+            return False
+        ssort = ''.join ( sorted ( s ) )
+        tsort = ''.join ( sorted ( t ) )
+        if ssort!=tsort:
+            return False
+        else:
+            return True
+
+
+"""
